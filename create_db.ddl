@@ -11,6 +11,6 @@ CREATE TABLE messages (
   Content varchar(50) NOT NULL,
   UserID int(11) NOT NULL,
   PRIMARY KEY (MessageID),
-  FOREIGN KEY (UserID) REFERENCES `users` (`UserID`)
+  FOREIGN KEY (UserID) REFERENCES users (UserID)
 );
 

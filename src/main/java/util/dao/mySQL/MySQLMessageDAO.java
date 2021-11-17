@@ -37,10 +37,9 @@ public class MySQLMessageDAO implements MessageDAO {
                 message.setContent(resultSet.getString("content"));
                 message.setUserName(resultSet.getString("name"));
                 messageList.add(message);
-
             }
         } catch (SQLException e) {
-            log.error("getMessages() | Something wrong with connection to data base");
+            log.error("Get message history from database | FAIL");
             e.printStackTrace();
         } finally {
             try {
@@ -49,7 +48,7 @@ public class MySQLMessageDAO implements MessageDAO {
                 statement.close();
                 connection.close();
             } catch (SQLException e) {
-                log.error("Something bad with close connections");
+                log.error("Close connections | FAIL");
                 e.printStackTrace();
             }
         }
@@ -68,7 +67,7 @@ public class MySQLMessageDAO implements MessageDAO {
             preparedStatement.setInt(2, messageDto.getUserId());
             preparedStatement.execute();
         } catch (SQLException e) {
-            log.error("insertMessage() | Something wrong with connection to DB");
+            log.error("Insert message to database | FAIL");
             e.printStackTrace();
         } finally {
             try {
@@ -76,7 +75,7 @@ public class MySQLMessageDAO implements MessageDAO {
                 preparedStatement.close();
                 connection.close();
             } catch (SQLException e) {
-                log.error("Something bad with close connections");
+                log.error("Close connections | FAIL");
                 e.printStackTrace();
             }
         }

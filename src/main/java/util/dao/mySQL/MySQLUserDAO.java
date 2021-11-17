@@ -35,10 +35,9 @@ public class MySQLUserDAO implements UserDao {
 				user.setId(resultSet.getInt("userid"));
 			}
 			assert user != null;
-			log.info(String.format("Saved new user id:[%s] to data base | SUCCESS", user.getId()));
 
 		} catch (SQLException e) {
-			log.error(String.format("getUserByName(%s) | Something wrong with connection to DB",name));
+			log.error(String.format("Get user [name:%s] from database | FAIL",name));
 			e.printStackTrace();
 		} finally {
 			try {
@@ -47,7 +46,7 @@ public class MySQLUserDAO implements UserDao {
 				preparedStatement.close();
 				conn.close();
 			} catch (SQLException e) {
-				log.error("Something bad with close connections");
+				log.error("Close connections | FAIL");
 				e.printStackTrace();
 			}
 		}
@@ -63,9 +62,9 @@ public class MySQLUserDAO implements UserDao {
 			st = conn.prepareStatement(ADD_USER);
 			st.setString(1, user.getName());
 			st.execute();
-			log.info(String.format("Add new user name:[%s] to data base | SUCCESS",user.getName()));
+			log.info(String.format("Add new user [name:%s] to database | SUCCESS",user.getName()));
 		} catch (SQLException e) {
-			log.error(String.format("insertUser(%s) | Something wrong with connection to DB",user.getName()));
+			log.error(String.format("Insert user [name: %s] to database | FAIL",user.getName()));
 			e.printStackTrace();
 		} finally {
 			try {
@@ -73,7 +72,7 @@ public class MySQLUserDAO implements UserDao {
 				st.close();
 				conn.close();
 			} catch (SQLException e) {
-				log.error("Something bad with close connections");
+				log.error("Close connections | FAIL");
 				e.printStackTrace();
 			}
 

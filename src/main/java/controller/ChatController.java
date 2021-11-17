@@ -26,7 +26,6 @@ public class ChatController extends HttpServlet {
         HttpSession session = request.getSession();
 
         if(session.getAttribute("user")==null){
-            log.warn(String.format("Login session for user [%s] NOT found", session.getAttribute("user")));
             rd = request.getRequestDispatcher(LOGIN_FORM);
         } else {
             String jsonList = chatService.parseToJSONfromList(chatService.getMessageHistory());
@@ -44,7 +43,6 @@ public class ChatController extends HttpServlet {
         String sendMessage = request.getParameter("sendMessage");
 
         if (session.getAttribute("user") == null || request.getParameter("logOut") != null) {
-            log.warn("No login session for user");
             session.setAttribute("user", null);
             rd = request.getRequestDispatcher(LOGIN_FORM);
         } else {

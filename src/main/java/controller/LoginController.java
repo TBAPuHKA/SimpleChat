@@ -25,7 +25,6 @@ public class LoginController extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (session.getAttribute("user") == null) {
-            log.warn(String.format("Login session for user [%s] NOT found", session.getAttribute("user")));
             rd = request.getRequestDispatcher(LOGIN_FORM);
         } else {
             rd = request.getRequestDispatcher("/chat");

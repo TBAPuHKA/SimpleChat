@@ -41,7 +41,7 @@ public class ChatService {
         try {
             jsonFromList = objectMapper.writeValueAsString(list);
         } catch (JsonProcessingException e) {
-            log.info("parseToJSONfromList() | Something wrong with parsing to JSON");
+            log.error("Parse JSON from list | FAIL");
             e.printStackTrace();
         }
         return jsonFromList;
